@@ -188,16 +188,25 @@ package name does not match theme name + `-theme' suffix.")
         (spacemacs/load-or-install-package pkg)))))
   (load-theme theme t))
 
-(defun spacemacs/cycle-spacemacs-theme ()
-  "Cycle through themes defined in `dotspacemacs-themes.'"
+;; Theme switcher
+(defun spacemacs/theme-next ()
   (interactive)
-  (when  spacemacs--cur-theme
-    (disable-theme spacemacs--cur-theme)
-    (setq spacemacs--cycle-themes
-          (append spacemacs--cycle-themes (list spacemacs--cur-theme))))
-  (setq  spacemacs--cur-theme (pop spacemacs--cycle-themes))
-  (message "Loading theme %s..." spacemacs--cur-theme)
-  (spacemacs/load-theme spacemacs--cur-theme))
+  (when spacemacs--cur-theme
+    (disable-theme spacemacs--cur-theme))
+  (setq spacemacs--cur-theme (pop spacemacs--cycle-themes))
+  (add-to-list 'spacemacs--cycle-themes spacemacs--cur-theme t)
+  (message "Loading theme %s..." (car spacemacs--cycle-themes))
+  (spacemacs/load-theme (car spacemacs--cycle-themes)))
+
+(defun spacemacs/theme-previous ()
+  (interactive)
+  (when spacemacs--cur-theme
+    (disable-theme spacemacs--cur-theme))
+  (setq spacemacs--cur-theme (car (reverse spacemacs--cycle-themes)))
+  (delete spacemacs--cur-theme spacemacs--cycle-themes)
+  (push spacemacs--cur-theme spacemacs--cycle-themes)
+  (message "Loading theme %s..." (car spacemacs--cycle-themes))
+  (spacemacs/load-theme (car spacemacs--cycle-themes)))
 
 (defadvice load-theme (after spacemacs/load-theme-adv activate)
   "Perform post load processing."

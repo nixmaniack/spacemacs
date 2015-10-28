@@ -84,7 +84,13 @@
   "bY"  'spacemacs/copy-whole-buffer-to-clipboard
   "bw"  'read-only-mode)
 ;; Cycling settings -----------------------------------------------------------
-(evil-leader/set-key "Tn" 'spacemacs/cycle-spacemacs-theme)
+(spacemacs|define-micro-state theme-switcher
+  :doc "[n] next [p] previous [q] quit"
+  :evil-leader "Tn"
+  :bindings
+  ("n" spacemacs/theme-next)
+  ("p" spacemacs/theme-previous)
+  ("q" nil :exit t))
 ;; describe functions ---------------------------------------------------------
 (defmacro spacemacs||set-helm-key (keys func)
   "Define a key bindings for FUNC using KEYS.
