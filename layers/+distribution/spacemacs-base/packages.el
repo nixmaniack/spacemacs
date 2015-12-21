@@ -1339,15 +1339,16 @@ ARG non nil means that the editing style is `vim'."
       (add-to-list 'recentf-exclude (expand-file-name package-user-dir))
       (add-to-list 'recentf-exclude "COMMIT_EDITMSG\\'"))))
 
-(defun spacemacs-base/init-restart-emacs()
+(defun spacemacs-base/init-restart-emacs ()
   (use-package restart-emacs
     :defer t
     :init
-    (spacemacs/set-leader-keys "qr" 'spacemacs/restart-emacs)
-    (defun spacemacs/restart-emacs ()
-      (interactive)
-      (setq spacemacs-really-kill-emacs t)
-      (restart-emacs))))
+    (defun spacemacs/restart-emacs--before (&rest args)
+      "Force restart if persistent server"
+      (setq spacemacs-really-kill-emacs t))
+    (advice-add 'restart-emacs :before 'spacemacs/restart-emacs--before)
+
+    (spacemacs/set-leader-keys "qr" 'restart-emacs)))
 
 (defun spacemacs-base/init-savehist ()
   (use-package savehist
