@@ -11,6 +11,7 @@
   - [[#headers-mode][Headers mode]]
   - [[#view-mode][View mode]]
 - [[#configuration][Configuration]]
+  - [[#message-formatting][Message formatting]]
   - [[#maildirs-extension][Maildirs extension]]
   - [[#multiple-accounts][Multiple Accounts]]
   - [[#async-mode][Async mode]]
@@ -89,6 +90,25 @@ existing =dotspacemacs-configuration-layers= list in this file.
 Configuration varies too much to give precise instructions. What follows is one
 example configuration. Refer to =mu4e='s manual for more detailed configuration
 instructions.
+
+** Message formatting
+There are multiple permutations and combinations of how newlines should be
+formatted when composing a message. Whether you want to distinguish between /hard/ and
+/soft/ lines or want to enable =format=flowed=, the choice is subjective.
+
+Using =mu4e-compose-configure-hard-newlines= ,you can configure the behavior of
+newlines in compose mode. Possible values are =always=, =never=, =guess= and =disable=.
+The default value is =guess= which can be changed as shown below when including
+the layer.
+
+#+BEGIN_SRC emacs-lisp
+  (setq-default dotspacemacs-configuration-layers
+                '((mu4e :variables
+                        mu4e-compose-configure-hard-newlines 'guess)))
+#+END_SRC
+
+*Note*: Check the [[https://www.djcbsoftware.nl/code/mu/mu4e/Writing-messages.html#Writing-messages][documentation]] of =mu4e-compose-format-flowed= for combined
+effects.
 
 ** Maildirs extension
 The [[https://github.com/agpchil/mu4e-maildirs-extension][maildirs extension]] adds a list of all your maildirs to the main =mu4e= view

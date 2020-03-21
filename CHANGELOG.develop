@@ -2465,6 +2465,8 @@ Other:
 - Enabled scrolling in =mu4e= (thanks to Simon Altschuler)
 - Kill mu4e layout on app exit (thanks to Ag Ibragimov)
 - Restore ~gu~ binding for ~mu4e-view-go-to-url~ (thanks to Dominik Schrempf)
+- Added variable =mu4e-compose-configure-hard-newlines= to customize
+  =use-hard-newlines= for =mu4e-compose-mode= (thanks to Muneeb Shaikh)
 - Updated assigned purpose names
 **** Multiple Cursors
 - Disabled Spacemacs paste transient state when pasting to avoid pasting issue

@@ -33,6 +33,15 @@
 (defvar mu4e-use-maildirs-extension nil
   "Use mu4e-maildirs-extension package if value is non-nil.")
 
+(defvar mu4e-compose-configure-hard-newlines 'guess
+  "Configure values of `use-hard-newlines' for `mu4e-compose' buffer.
+
+Possible values are `always', `never', `guess' and `disable'.
+
+Check documentation of `mu4e-compose-format-flowed' and
+`use-hard-newlines' on its effects. More info can be found here:
+https://www.djcbsoftware.nl/code/mu/mu4e/Writing-messages.html")
+
 (defvar mu4e-list-modes
   '(mu4e-main-mode mu4e-headers-mode)
   "Modes that are associated with mu4e's listing buffers.")

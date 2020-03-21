@@ -23,3 +23,14 @@
     (or (mu4e-message-contact-field-matches msg :to rx)
         (mu4e-message-contact-field-matches msg :cc rx)
         (mu4e-message-contact-field-matches msg :bcc rx))))
+
+(defun spacemacs//mu4e-compose-use-hard-newlines ()
+  (pcase mu4e-compose-use-hard-newlines
+    (`disable
+     (use-hard-newlines -1))
+    (`always
+     (use-hard-newlines t))
+    (`guess
+     (use-hard-newlines t 'guess))
+    (`never
+     (use-hard-newlines t 'never))))
